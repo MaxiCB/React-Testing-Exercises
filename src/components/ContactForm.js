@@ -32,7 +32,7 @@ const ContactForm = () => {
     //   "name": "morpheus",
     //   "job": "leader"
     // }))
-    axios.post('https://reqres.in/api/users', data)
+    axios.post('https://reqres.in/api/users', data) 
     // Made the success call a function to handle data, and to also update the form to the correct state
       .then(res => updateData(res.data))
       .catch(err => console.log(err))
@@ -49,10 +49,6 @@ const ContactForm = () => {
       message: ''
     })
   }
-
-  useEffect(() =>{
-    console.log(data);
-  }, [data])
 
   return (
     <div className="App">
