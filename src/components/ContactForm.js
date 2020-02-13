@@ -11,6 +11,20 @@ const ContactForm = () => {
     setData(data);
   };
 
+  // XHR Implementation rather than bringing in Axios
+  const xhr = new XMLHttpRequest()
+// Add event listener for when the server sends a resopnse
+  xhr.addEventListener('load', () => {
+    console.log(xhr.responseText)
+  })
+  // Tell xhr we will be making a POST 
+  xhr.open('POST', 'https://reqres.in/api/users')
+
+  const postReqRes = data => {
+    console.log(data)
+    
+  }
+
   useEffect(() =>{
     console.log(data);
   }, [data])
