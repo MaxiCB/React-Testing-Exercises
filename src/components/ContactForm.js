@@ -58,9 +58,10 @@ const ContactForm = () => {
     <div className="App">
       <form onSubmit={handleSubmit(onSubmit)} data-testid="form-element">
         <div data-testid="name-element">
-          <label htmlFor="firstName">First Name*</label>
+          <label htmlFor="first-name">First Name*</label>
           <input
-            name="name"
+            id="first-name"
+            name="first-name"
             ref={register({ required: true })}
           />
           {errors.firstName && (
@@ -68,10 +69,11 @@ const ContactForm = () => {
           )}
         </div>
 
-        <div data-testid="last-name-element">
-          <label htmlFor="lastName">Last Name*</label>
+        <div data-testid="last-element">
+          <label htmlFor="last-name">Last Name*</label>
           <input
-            name="lastName"
+            id="last-name"
+            name="last-name"
             ref={register({ required: true })}
           />
           {errors.lastName && (
@@ -80,17 +82,17 @@ const ContactForm = () => {
         </div>
 
         <div data-testid="email-element">
-          <label htmlFor="email" placeholder="bluebill1049@hotmail.com">
+          <label htmlFor="email">
             Email*
           </label>
-          <input name="email" ref={register({ required: true })} />
+          <input id="email" name="email" ref={register({ required: true })} />
           {errors.email && (
             <p>Looks like there was an error: {errors.email.type}</p>
           )}
         </div>
         <div data-testid="message-element">
           <label htmlFor="message">Message</label>
-          <textarea name="message" ref={register({ required: false })} />
+          <textarea id="message" name="message" ref={register({ required: false })} />
         </div>
         {/* This data is empty on app load, then when the user makes a post request it will update on success */}
         {data && (
@@ -98,7 +100,7 @@ const ContactForm = () => {
             {JSON.stringify(data, null, 2)}
           </pre>
         )}
-        <input type="submit" data-testid="input-element"/>
+        <input id="submit" type="submit" data-testid="input-element"/>
       </form>
     </div>
   );
