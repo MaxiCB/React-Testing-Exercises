@@ -92,7 +92,7 @@ const ContactForm = () => {
         </div>
         {/* This data is empty on app load, then when the user makes a post request it will update on success */}
         {data && (
-          <pre style={{ textAlign: "left", color: "white" }}>
+          <pre data-testid="pre-element" style={{ textAlign: "left", color: "white" }}>
             {JSON.stringify(data, null, 2)}
           </pre>
         )}

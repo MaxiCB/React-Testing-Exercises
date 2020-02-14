@@ -1,6 +1,7 @@
 import React from "react";
 
-import { render, fireEvent, waitForElement, getByText } from "@testing-library/react";
+import { render, fireEvent, waitForElement } from "@testing-library/react";
+import axiosMock from 'axios'
 import axios from 'axios'
 
 import ContactForm from '../components/ContactForm';
@@ -55,7 +56,7 @@ describe('Post Method', () => {
 // Testing to ensure that all form elements update properly
 test('Handles form changes properly', async () => {
 
-    const { getByTestId, getByLabelText } = render(<ContactForm/>)
+    const { getByLabelText, getByTestId } = render(<ContactForm/>)
 
     // Arrange
     // Get reference to all elements in the form
@@ -65,6 +66,7 @@ test('Handles form changes properly', async () => {
     const lastNameElement = getByLabelText(/Last Name*/i)
     const emailElement = getByLabelText(/emai*/i)
     const messageElement = getByLabelText(/message/i)
+    const inputElement = getByTestId('input-element') 
 
     // Act
     // Change all of the input field to something that can be tested
@@ -81,11 +83,31 @@ test('Handles form changes properly', async () => {
     expect(lastNameElement.value).toBe('Gilbo')
     expect(emailElement.value).toBe('philbo@gilbo.com')
     expect(messageElement.value).toBe('Philbos special message')
+
+    act(() => {
+        inputElement.dispatchEvent(new MouseEvent('click', {bubbles: true}))
+    });
+
+    expect(nameElement.value).toBe('Philbo')
+    expect(lastNameElement.value).toBe('Gilbo')
+    expect(emailElement.value).toBe('philbo@gilbo.com')
+    expect(messageElement.value).toBe('Philbos special message')
 })
 
-test('Handles for POST properly', async () => {
-    // Need to change the form data
-    // Need to make the post request that is inside the component
-    // Need to ensure that the response is correct based on what it was given
-    // Need to check for possible error when the POST method is fired
-})
+// test('Testing', async () => {
+//     const { getByTestId, asFragment } = render(<ContactForm />)
+//     const firstRender = asFragment()
+
+//     fireEvent.click(getByTestId('input-element'))
+//     expect(firstRender).toMatchDiffSnapshot(asFragment())
+// })
+
+// it('testButton', async () => {
+//     const { getByText, getByLabelText, getByTestId } = render(<ContactForm />)
+
+//     fireEvent.click(getByTestId('input-element'))
+
+//     await waitForElement(()=> {
+//         expect(getByTestId('input-element')).toBeInTheDocument();
+//     })
+//   })
